@@ -4,14 +4,14 @@ function vueltaCarta(): void{
 
     if (imgPerro instanceof HTMLImageElement) {
         imgPerro.addEventListener("click", () => {
-            imgPerro.src = "../imagenes/4.png";
+            imgPerro.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/refs/heads/main/memo/4.png";
         })
     }
 
     
     if (imgGallina instanceof HTMLImageElement) {
         imgGallina.addEventListener("click", () => {
-            imgGallina.src = "../imagenes/6.png";
+            imgGallina.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/refs/heads/main/memo/6.png";
         })
     }
 }

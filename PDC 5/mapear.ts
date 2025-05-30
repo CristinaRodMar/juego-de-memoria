@@ -7,19 +7,19 @@ interface InfoCarta {
 const infoCarta: InfoCarta[] = [
     {
         idFoto: 0,
-        imagen: "../imagenes/2.png"
+        imagen: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/refs/heads/main/memo/2.png"
     },
     {
         idFoto: 1,
-        imagen: "../imagenes/2.png"
+        imagen: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/refs/heads/main/memo/2.png"
     },
     {
         idFoto: 2,
-        imagen: "../imagenes/6.png"
+        imagen: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/refs/heads/main/memo/6.png"
     },
     {
         idFoto: 3,
-        imagen: "../imagenes/6.png"
+        imagen: "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/refs/heads/main/memo/6.png"
     }
 ]
 
