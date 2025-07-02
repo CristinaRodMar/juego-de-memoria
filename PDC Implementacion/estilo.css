@@ -1,0 +1,56 @@
+body {
+    background-color: #e0ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.contenedor {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 15px;
+}
+
+.carta {
+    background-color: #add8e6;
+    border-radius: 10px;
+}
+
+.carta.boca-abajo {
+    background: linear-gradient(45deg, #add8e6, #87ceeb);
+}
+
+
+
+.juego {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.botones button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #0077b6;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.botones button:hover {
+    background-color: #005f87;
+}

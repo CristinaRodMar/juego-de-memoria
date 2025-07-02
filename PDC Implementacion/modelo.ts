@@ -10,7 +10,7 @@ interface InfoCarta {
     imagen: string;
 }
 
-const infoCartas: InfoCarta[] = [
+export const infoCartas: InfoCarta[] = [
     /* Aquí ponemos seis cartas siguiendo la interfaz de InfoCarta */
     {
         idFoto: 0,
@@ -40,7 +40,7 @@ const crearCartaInicial = (idFoto: number, imagen: string): Carta => ({
     encontrada: false,
 });
 
-const crearColeccionDeCartasInicial = (infoCartas: InfoCarta[]): Carta[] => {
+export const crearColeccionDeCartasInicial = (infoCartas: InfoCarta[]): Carta[] => {
     /* Aquí crearemos un array de cartas a partir de un array de infoCartas y duplicaremos las cartas para que haya dos de cada tipo.*/
     return infoCartas.flatMap((info) => [
         {
@@ -79,7 +79,7 @@ export interface Tablero {
     indiceCartaVolteadaB?: number;
 }
 
-const crearTableroInicial = (): Tablero => ({
+export const crearTableroInicial = (): Tablero => ({
     cartas: cartas,
     estadoPartida: "PartidaNoIniciada",
 });
