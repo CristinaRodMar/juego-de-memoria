@@ -33,7 +33,7 @@ export const infoCartas: InfoCarta[] = [
     }, 
 ];
 
-const crearCartaInicial = (idFoto: number, imagen: string): Carta => ({
+export const crearCartaInicial = (idFoto: number, imagen: string): Carta => ({
     idFoto,
     imagen,
     estaVuelta: false,
@@ -65,7 +65,7 @@ export let cartas: Carta[] = crearColeccionDeCartasInicial(infoCartas);
     EstadoPartida = "PartidaNoIniciada", una vez que se pulse Iniciar partida el estado de la partida cambiaría a "CeroCartasLevantadas" y así sucesivamente.
 */
 
-type EstadoPartida =
+export type EstadoPartida =
     | "PartidaNoIniciada"
     | "CeroCartasLevantadas"
     | "UnaCartaLevantada"
