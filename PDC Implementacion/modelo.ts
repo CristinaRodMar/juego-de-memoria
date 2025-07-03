@@ -42,20 +42,10 @@ export const crearCartaInicial = (idFoto: number, imagen: string): Carta => ({
 
 export const crearColeccionDeCartasInicial = (infoCartas: InfoCarta[]): Carta[] => {
     /* Aquí crearemos un array de cartas a partir de un array de infoCartas y duplicaremos las cartas para que haya dos de cada tipo.*/
-    return infoCartas.flatMap((info) => [
-        {
-        idFoto: info.idFoto,
-        imagen: info.imagen,
-        estaVuelta: false,
-        encontrada: false,
-        },
-        {
-        idFoto: info.idFoto,
-        imagen: info.imagen,
-        estaVuelta: false,
-        encontrada: false,
-        },
-    ]);
+    const cartasTransformadas: Carta[] = infoCartas.map((infoCarta) => {
+        return crearCartaInicial(infoCarta.idFoto, infoCarta.imagen)
+    })
+    return [...cartasTransformadas, ...cartasTransformadas]
 };
 
 export let cartas: Carta[] = crearColeccionDeCartasInicial(infoCartas);

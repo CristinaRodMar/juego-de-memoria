@@ -6,7 +6,7 @@ export const barajarCartas = (cartas : Carta[]): Carta[] => {
     const resultado = [...cartas];
     for (let i = resultado.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [resultado[i], resultado[j]] = [resultado[j], resultado[i]];
+        [{...resultado[i]}, {...resultado[j]}] = [resultado[j], resultado[i]];
     }
     return resultado;
 }
@@ -15,14 +15,15 @@ export const barajarCartas = (cartas : Carta[]): Carta[] => {
 
 export const sePuedeVoltearLaCarta = (tablero: Tablero, indice: number): boolean => {
     
-    const carta = tablero.cartas[indice];
+    return tablero.cartas[indice].encontrada === false && tablero.cartas[indice].estaVuelta === false;
+    /*const carta = tablero.cartas[indice];
 
     const yaEncontrada = carta.encontrada;
     const yaVolteada = carta.estaVuelta;
 
     const cartasVolteadas = tablero.cartas.filter(c => c.estaVuelta && !c.encontrada).length;
 
-    return !yaEncontrada && (!yaVolteada || cartasVolteadas < 2);
+    return !yaEncontrada && (!yaVolteada || cartasVolteadas < 2);*/
 }
 
 export const voltearLaCarta = (tablero: Tablero, indice: number) : void => {
@@ -60,11 +61,15 @@ export const parejaEncontrada = (tablero: Tablero, indiceA: number, indiceB: num
     
     tablero.cartas[indiceA].encontrada = true;
     tablero.cartas[indiceB].encontrada = true;
+    tablero.indiceCartaVolteadaA = undefined;
+    tablero.indiceCartaVolteadaB = undefined;
 
     const todasEncontradas = tablero.cartas.every(cartas => cartas.encontrada);
 
     if (todasEncontradas) {
         tablero.estadoPartida = "PartidaCompleta"
+    } else {
+        tablero.estadoPartida = "CeroCartasLevantadas";
     }
 }
 
@@ -73,12 +78,12 @@ export const parejaEncontrada = (tablero: Tablero, indiceA: number, indiceB: num
 */
 
 export const parejaNoEncontrada = (tablero: Tablero, indiceA: number, indiceB: number): void => {
-    if (indiceA >= 0 && indiceA < tablero.cartas.length && indiceB >= 0 && indiceB < tablero.cartas.length) {
+    
         tablero.cartas[indiceA].estaVuelta = false;
         tablero.cartas[indiceB].estaVuelta = false;
-        tablero.estadoPartida = "CeroCartasLevantadas";
-    }
-    
+    tablero.estadoPartida = "CeroCartasLevantadas";
+    tablero.indiceCartaVolteadaA = undefined;
+    tablero.indiceCartaVolteadaB = undefined;
 }
 
 /*
