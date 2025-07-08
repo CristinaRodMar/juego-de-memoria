@@ -1,13 +1,13 @@
-import { tablero, Tablero} from "./modelo"
+import { tablero, Tablero } from "./modelo"
 import { voltearLaCarta, sePuedeVoltearLaCarta, sonPareja, parejaNoEncontrada, parejaEncontrada, iniciaPartida } from "./motor"
 
 const crearTablero = () => {
-    for (let indice = 0; indice < tablero.cartas.length; indice++){
+    for (let indice = 0; indice < tablero.cartas.length; indice++) {
         mapearCartas(indice);
     }
 }
 
-const mapearCartas =  (indice: number) => {
+const mapearCartas = (indice: number) => {
     const elementoDiv = document.querySelector(`div[data-indice-array="${indice}"]`);
     if (elementoDiv !== null && elementoDiv !== undefined && elementoDiv instanceof HTMLDivElement) {
         elementoDiv.addEventListener("click", () => {
@@ -15,9 +15,10 @@ const mapearCartas =  (indice: number) => {
                 voltearLaCarta(tablero, indice);
                 pintarCarta(indice);
                 esLaSegundaCarta(tablero);
-                console.log(tablero)
+                actualizarContadorIntentos();
+                console.log(tablero);
             } else {
-                console.log("No se puede voltear la carta")
+                alert("¡Esta carta ya está volteada o encontrada!");
             }
         })
     }
@@ -38,10 +39,16 @@ const vaciarImagen = (indice: number) => {
 }
 
 const voltearCartas = (tablero: Tablero) => {
-    for (let indice = 0; indice < tablero.cartas.length; indice++){
+    for (let indice = 0; indice < tablero.cartas.length; indice++) {
         if (tablero.cartas[indice].encontrada === false && tablero.cartas[indice].estaVuelta === false) {
-                    vaciarImagen(indice);
+            vaciarImagen(indice);
         }
+    }
+}
+
+const reiniciarInterfaz = () => {
+    for (let indice = 0; indice < tablero.cartas.length; indice++) {
+        vaciarImagen(indice);
     }
 }
 
@@ -50,15 +57,22 @@ const esLaSegundaCarta = (tablero: Tablero) => {
     const indiceB = tablero.indiceCartaVolteadaB;
     if (indiceA !== undefined && indiceB !== undefined) {
         if (sonPareja(indiceA, indiceB, tablero)) {
-            parejaEncontrada(tablero, indiceA, indiceB)
+            parejaEncontrada(tablero, indiceA, indiceB);
         } else {
             parejaNoEncontrada(tablero, indiceA, indiceB);
             setTimeout(() => {
                 voltearCartas(tablero);
             }, 1000);
         }
+        actualizarContadorIntentos();
     }
-    
+}
+
+const actualizarContadorIntentos = () => {
+    const contador = document.getElementById("contador-intentos");
+    if (contador !== null && contador !== undefined && contador instanceof HTMLSpanElement) {
+        contador.textContent = tablero.intentos.toString();
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -66,7 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnIniciarPartida = document.getElementById("btnEmpezar");
     if (btnIniciarPartida !== null && btnIniciarPartida !== undefined && btnIniciarPartida instanceof HTMLButtonElement) {
         btnIniciarPartida.addEventListener("click", () => {
-                iniciaPartida(tablero);
+            iniciaPartida(tablero);
+            reiniciarInterfaz();
+            actualizarContadorIntentos();
         })
     }
 })

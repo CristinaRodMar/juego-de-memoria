@@ -50,10 +50,8 @@ export const crearColeccionDeCartasInicial = (infoCartas: InfoCarta[]): Carta[] 
 
 export let cartas: Carta[] = crearColeccionDeCartasInicial(infoCartas);
 
-/*
-    Aquí definimos el tipo de estado de la partida, la idea es que cuando empiece la partida todas las cartas estén boca abajo y si se hacen click sobre ellas no se volteen.
-    EstadoPartida = "PartidaNoIniciada", una vez que se pulse Iniciar partida el estado de la partida cambiaría a "CeroCartasLevantadas" y así sucesivamente.
-*/
+/* Aquí definimos el tipo de estado de la partida, la idea es que cuando empiece la partida todas las cartas estén boca abajo y si se hacen click sobre ellas no se volteen.
+    EstadoPartida = "PartidaNoIniciada", una vez que se pulse Iniciar partida el estado de la partida cambiaría a "CeroCartasLevantadas" y así sucesivamente. */
 
 export type EstadoPartida =
     | "PartidaNoIniciada"
@@ -67,11 +65,13 @@ export interface Tablero {
     estadoPartida: EstadoPartida;
     indiceCartaVolteadaA?: number;
     indiceCartaVolteadaB?: number;
+    intentos: number;
 }
 
 export const crearTableroInicial = (): Tablero => ({
     cartas: cartas,
     estadoPartida: "PartidaNoIniciada",
+    intentos: 0
 });
 
 export let tablero: Tablero = crearTableroInicial();
