@@ -1,4 +1,4 @@
-import { tablero, Tablero, infoCartas } from "./modelo"
+import { tablero, Tablero} from "./modelo"
 import { voltearLaCarta, sePuedeVoltearLaCarta, sonPareja, parejaNoEncontrada, parejaEncontrada, iniciaPartida } from "./motor"
 
 const crearTablero = () => {
@@ -6,7 +6,6 @@ const crearTablero = () => {
         mapearCartas(indice);
     }
 }
-
 
 const mapearCartas =  (indice: number) => {
     const elementoDiv = document.querySelector(`div[data-indice-array="${indice}"]`);
@@ -70,5 +69,4 @@ document.addEventListener("DOMContentLoaded", () => {
                 iniciaPartida(tablero);
         })
     }
-    
 })
